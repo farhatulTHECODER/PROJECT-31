@@ -7,12 +7,15 @@ var plinkos = [];
 var divisions = [];
 var particles = [];
 var divisionsHeight = 150;
+var platform;
 
 function setup() {
     var canvas = createCanvas(1200, 400);
     engine = Engine.create();
     world = engine.world;
-    ground = new Ground(599,590,1200,30);
+    
+    ground = new Ground(600,height,1200,20);
+    platform = new Ground(150, 305, -1, -1);
 
     for(var k = 0; k <=width; k = k+80){
       divisions.push(new Divisions(k, height-divisionsHeight/2, 10, divisionsHeight));
@@ -51,6 +54,9 @@ function draw() {
   background("pink");
    Engine.update(engine);
 
+   ground.display();  
+   platform.display();
+
   for(var i = 0; i < particles.length; i++){
     particles[i].display();
   }
@@ -62,5 +68,5 @@ function draw() {
   for(var j = 0; j<plinkos.length;j++){
     plinkos[j].display();
   }
-  ground.display();   
+  
 }
